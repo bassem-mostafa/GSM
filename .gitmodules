@@ -1,0 +1,12 @@
+[submodule "port/Stub"]
+	path = port/Stub
+	url = https://github.com/bassem-mostafa/GSM_Stub.git
+[submodule "driver/BC92"]
+	path = driver/BC92
+	url = https://github.com/bassem-mostafa/GSM_BC92.git
+[submodule "port/Windows"]
+	path = port/Windows
+	url = https://github.com/bassem-mostafa/GSM_Windows.git
+[submodule "port/Flow_Meter"]
+	path = port/Flow_Meter
+	url = https://github.com/bassem-mostafa/GSM_Flow_Meter.git
