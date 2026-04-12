@@ -88,7 +88,7 @@ extern "C"
     // #### Public Type(s) #########################################################
     // #############################################################################
 
-    typedef struct GSM_Instance_Context_t GSM_Instance_Context_t;
+    typedef struct GSM_InstanceContext_t GSM_InstanceContext_t;
 
     typedef struct GSM_Instance
     {
@@ -96,7 +96,7 @@ extern "C"
 
         union
         {
-            GSM_Instance_Context_t * Context;
+            GSM_InstanceContext_t * Context;
             GSM_BC92_Instance_t * BC92;
         };
 
