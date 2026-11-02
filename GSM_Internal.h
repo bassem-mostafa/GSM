@@ -88,50 +88,51 @@ extern "C"
     // #### Public Type(s) #########################################################
     // #############################################################################
 
-    typedef struct GSM_InstanceContext_t GSM_InstanceContext_t;
+    typedef enum GSM_Type
+    {
+        GSM_Type_Unknown = 0,
+        GSM_Type_Null,
+        GSM_Type_BC92,
+    } GSM_Type_t;
 
     typedef struct GSM_Instance
     {
-        GSM_t GSMx;
+        GSM_Type_t Type;
 
         union
         {
-            GSM_InstanceContext_t * Context;
-            GSM_BC92_Instance_t * BC92;
+            GSM_BC92_t BC92x;
         };
 
-        GSM_Callback_OnComplete_t OnComplete;
-        GSM_Callback_OnTime_t OnTime;
-        GSM_Callback_OnVoltage_t OnVoltage;
-        GSM_Callback_OnRSSI_t OnRSSI;
-        GSM_Callback_OnSocketOpen_t OnSocketOpen;
-        GSM_Callback_OnSocketClose_t OnSocketClose;
+        GSM_CallbackOnComplete_t * OnComplete;
+        GSM_CallbackOnTime_t * OnTime;
+        GSM_CallbackOnVoltage_t * OnVoltage;
+        GSM_CallbackOnRSSI_t * OnRSSI;
+        GSM_CallbackOnSocketOpen_t * OnSocketOpen;
+        GSM_CallbackOnSocketClose_t * OnSocketClose;
+
     } GSM_Instance_t;
 
     // #############################################################################
     // #### Public Method(s) #######################################################
     // #############################################################################
 
-    GSM_Status_t GSM_GetInstance( GSM_t GSMx, GSM_Instance_t ** Instance );
-
     // The following APIs MUST be provided by the port
-    GSM_Status_t GSM_IsValid( GSM_t GSMx );
+    GSM_Status_t GSM_Port_Initialize( GSM_t GSMx );
+    GSM_Status_t GSM_Port_Cycle( GSM_t GSMx );
+    GSM_Status_t GSM_Port_DeInitialize( GSM_t GSMx );
 
-    GSM_Status_t GSM_Instance_Initialize( GSM_Instance_t * Instance );
-    GSM_Status_t GSM_Instance_Cycle( GSM_Instance_t * Instance );
-    GSM_Status_t GSM_Instance_DeInitialize( GSM_Instance_t * Instance );
+    GSM_Status_t GSM_Port_SetCallbackOnComplete( GSM_t GSMx, GSM_CallbackOnComplete_t * Callback );
+    GSM_Status_t GSM_Port_SetCallbackOnTime( GSM_t GSMx, GSM_CallbackOnTime_t * Callback );
+    GSM_Status_t GSM_Port_SetCallbackOnVoltage( GSM_t GSMx, GSM_CallbackOnVoltage_t * Callback );
+    GSM_Status_t GSM_Port_SetCallbackOnRSSI( GSM_t GSMx, GSM_CallbackOnRSSI_t * Callback );
+    GSM_Status_t GSM_Port_SetCallbackOnSocketOpen( GSM_t GSMx, GSM_CallbackOnSocketOpen_t * Callback );
+    GSM_Status_t GSM_Port_SetCallbackOnSocketClose( GSM_t GSMx, GSM_CallbackOnSocketClose_t * Callback );
 
-    GSM_Status_t GSM_Instance_Set_OnCompleteCallback( GSM_Instance_t * Instance, GSM_Callback_OnComplete_t Callback );
-    GSM_Status_t GSM_Instance_Set_OnTimeCallback( GSM_Instance_t * Instance, GSM_Callback_OnTime_t Callback );
-    GSM_Status_t GSM_Instance_Set_OnVoltageCallback( GSM_Instance_t * Instance, GSM_Callback_OnVoltage_t Callback );
-    GSM_Status_t GSM_Instance_Set_OnRSSICallback( GSM_Instance_t * Instance, GSM_Callback_OnRSSI_t Callback );
-    GSM_Status_t GSM_Instance_Set_OnSocketOpenCallback( GSM_Instance_t * Instance, GSM_Callback_OnSocketOpen_t Callback );
-    GSM_Status_t GSM_Instance_Set_OnSocketCloseCallback( GSM_Instance_t * Instance, GSM_Callback_OnSocketClose_t Callback );
-
-    GSM_Status_t GSM_Instance_Socket_Open( GSM_Instance_t * Instance, GSM_Address_t Address, GSM_Port_t Port );
-    GSM_Status_t GSM_Instance_Socket_Write( GSM_Instance_t * Instance, GSM_Data_t * Data, GSM_DataLength_t DataLength );
-    GSM_Status_t GSM_Instance_Socket_Read( GSM_Instance_t * Instance, GSM_Data_t * Data, GSM_DataLength_t * DataLength );
-    GSM_Status_t GSM_Instance_Socket_Close( GSM_Instance_t * Instance );
+    GSM_Status_t GSM_Port_Socket_Open( GSM_t GSMx, GSM_Address_t Address, GSM_Port_t Port );
+    GSM_Status_t GSM_Port_Socket_Write( GSM_t GSMx, GSM_Data_t * Data, GSM_DataLength_t DataLength );
+    GSM_Status_t GSM_Port_Socket_Read( GSM_t GSMx, GSM_Data_t * Data, GSM_DataLength_t * DataLength );
+    GSM_Status_t GSM_Port_Socket_Close( GSM_t GSMx );
 
     // #############################################################################
     // #### Public Variable(s) #####################################################
