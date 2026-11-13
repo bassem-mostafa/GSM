@@ -150,7 +150,7 @@ extern "C"
      *  @param[in] GSMx   Instance
      *  @param[in] Status Execution status
      */
-    typedef void ( GSM_CallbackOnComplete_t )( GSM_t GSMx, GSM_Status_t Status );
+    typedef void( GSM_CallbackOnComplete_t )( GSM_t GSMx, GSM_Status_t Status );
 
     /**
      *  @brief GSM On Time Callback
@@ -158,7 +158,7 @@ extern "C"
      *  @param[in] GSMx      Instance
      *  @param[in] Timestamp Time-stamp
      */
-    typedef void ( GSM_CallbackOnTime_t )( GSM_t GSMx, GSM_Timestamp_t Timestamp );
+    typedef void( GSM_CallbackOnTime_t )( GSM_t GSMx, GSM_Timestamp_t Timestamp );
 
     /**
      *  @brief GSM On Voltage Callback
@@ -166,7 +166,7 @@ extern "C"
      *  @param[in] GSMx    Instance
      *  @param[in] Voltage Voltage Value
      */
-    typedef void ( GSM_CallbackOnVoltage_t )( GSM_t GSMx, GSM_Voltage_t Voltage );
+    typedef void( GSM_CallbackOnVoltage_t )( GSM_t GSMx, GSM_Voltage_t Voltage );
 
     /**
      *  @brief GSM On RSSI Callback
@@ -174,21 +174,21 @@ extern "C"
      *  @param[in] GSMx Instance
      *  @param[in] RSSI RSSI Value
      */
-    typedef void ( GSM_CallbackOnRSSI_t )( GSM_t GSMx, GSM_RSSI_t RSSI );
+    typedef void( GSM_CallbackOnRSSI_t )( GSM_t GSMx, GSM_RSSI_t RSSI );
 
     /**
      *  @brief GSM On Socket Open Callback
      *
      *  @param[in] GSMx Instance
      */
-    typedef void ( GSM_CallbackOnSocketOpen_t )( GSM_t GSMx );
+    typedef void( GSM_CallbackOnSocketOpen_t )( GSM_t GSMx );
 
     /**
      *  @brief GSM On Socket Close Callback
      *
      *  @param[in] GSMx Instance
      */
-    typedef void ( GSM_CallbackOnSocketClose_t )( GSM_t GSMx );
+    typedef void( GSM_CallbackOnSocketClose_t )( GSM_t GSMx );
 
     // #############################################################################
     // #### Public Method(s) #######################################################
